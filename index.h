@@ -14,8 +14,7 @@ int menu_inicial(){
     printf("\n3. Sair do programa\n\n");
     printf("Escolha uma opcao: ");
 }
-
-// Teste
+//teste
 
 int menu_logistica(){
     printf("\t\tMENU LOGISTICA\n");
@@ -36,7 +35,7 @@ int menu_jogo(){
     printf("7. Calcula tempo de locais: \n");
 }
 
-void startGraf(float mat[MaxTam][MaxTam])
+void IniciarGrafo(float mat[MaxTam][MaxTam])
 {
     for (int i = 0; i < MaxTam; i++)
     {
