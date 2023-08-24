@@ -3,10 +3,9 @@
 void InseriFilial()
 {
     int cont = 1;
-    string filial[cont++];
-    cin >> filial[cont--];
-    int i=0;
-    cout << filial[i] <<endl;
+    string filial[cont];
+    cout << "Filial: ";
+        cin >> filial[cont];
 }
 
 void menuLogistica()
