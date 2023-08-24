@@ -10,7 +10,7 @@
 
 using namespace std;
 
-int menu_inicial(){
+int menuPrincipal(){
     printf("\t\tMENU DE OPCOES\n");
     printf("\n1. Modulo da logistica (grafo nao direcionado)");
     printf("\n2. Modulo do jogo (grafo direcionado)");
