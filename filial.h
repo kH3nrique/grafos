@@ -1,8 +1,10 @@
 #include "index.h"
 
-void InseriFilial()
+void InseriFilial(int cont)
 {
-    string filial;
+    cont = 1;
+    string filial[cont++];
+    cin >> filial;
 }
 
 void menuLogistica()
