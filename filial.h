@@ -1,10 +1,12 @@
 #include "index.h"
 
-void InseriFilial(int cont)
+void InseriFilial()
 {
-    cont = 1;
+    int cont = 1;
     string filial[cont++];
     cin >> filial[cont--];
+    int i=0;
+    cout << filial[i] <<endl;
 }
 
 void menuLogistica()
@@ -16,7 +18,7 @@ void menuLogistica()
     switch (n)
     {
     case 1:
-        
+        InseriFilial();
         break;
     
     default:
