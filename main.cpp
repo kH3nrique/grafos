@@ -1,11 +1,10 @@
 #include "index.h"
-#include "logistica.h"
+#include "filial.h"
 
 main()
 {   
 
-    switch (menuPrincipal())
-    {
+    switch (menu_inicial()){
     case 1:
         system("cls");
         menuLogistica();

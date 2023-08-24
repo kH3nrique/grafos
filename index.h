@@ -1,18 +1,18 @@
-#include <iostream>
-#include <string>
+#include<stdlib.h>
+#include<stdio.h>
+#include<string>
+#include<iostream>
+
 #define MaxTam 100
 
 using namespace std;
 
-int menuPrincipal()
-{
-    int op;
-    cout << "\t\tMENU DE OPCOES\n" <<endl;
-    cout << "1. Modulo da logistica (grafo nao direcionado)\n2. Modulo do jogo (grafo direcionado)\n3. Sair do programa\n"<<endl;
-    cout << "Escolha a opcao desejada: ";
-        cin >> op;
-        
-    return op; 
+int menu_inicial(){
+    printf("\t\tMENU DE OPCOES\n");
+    printf("\n1. Modulo da logistica (grafo nao direcionado)");
+    printf("\n2. Modulo do jogo (grafo direcionado)");
+    printf("\n3. Sair do programa\n\n");
+    printf("Escolha uma opcao: ");
 }
 
 void startGraf(float mat[MaxTam][MaxTam])
