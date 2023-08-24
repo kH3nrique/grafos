@@ -15,7 +15,7 @@ int menuPrincipal()
     return op; 
 }
 
-void startGraf(float mat[MaxTam][MaxTam])
+void inicializaGrafo(float mat[MaxTam][MaxTam])
 {
     for (int i = 0; i < MaxTam; i++)
     {

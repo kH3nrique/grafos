@@ -4,7 +4,7 @@ void InseriFilial(int cont)
 {
     cont = 1;
     string filial[cont++];
-    cin >> filial;
+    cin >> filial[cont--];
 }
 
 void menuLogistica()
