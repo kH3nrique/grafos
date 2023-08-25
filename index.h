@@ -45,7 +45,7 @@ int menu_jogo(){
     return op;
 }
 
-void chamaMenu()
+int chamaMenu()
 {
     switch (menuPrincipal())
     {
