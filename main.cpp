@@ -1,7 +1,7 @@
 #include "index.h"
-#include "filial.h"
-#include "jogo.h"
 
-main(){   
-
+int main()
+{
+    chamaMenu();
+    return 0;
 }

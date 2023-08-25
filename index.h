@@ -1,38 +1,63 @@
-#include<stdlib.h>
 #include<stdio.h>
 #include<string>
 #include<iostream>
+#include<stdlib.h>
 
 #define MaxTam 100
 
 using namespace std;
 
-int menu_inicial(){
-    printf("\t\tMENU DE OPCOES\n");
-    printf("\n1. Modulo da logistica (grafo nao direcionado)");
-    printf("\n2. Modulo do jogo (grafo direcionado)");
-    printf("\n3. Sair do programa\n\n");
-    printf("Escolha uma opcao: ");
+int menuPrincipal(){
+    int op;
+    cout << "\t\tMENU DE OPCOES"<<endl;;
+    cout << "\n1. Modulo da logistica (grafo nao direcionado)"<<endl;;
+    cout << "2. Modulo do jogo (grafo direcionado)"<<endl;;
+    cout << "3. Sair do programa\n\n"<<endl;;
+    cout << "Escolha uma opcao: "<<endl;;
+        cin >> op;
+    return op;
 }
-//teste
 
 int menu_logistica(){
-    printf("\t\tMENU LOGISTICA\n");
-    printf("1. Insere filial: \n");
-    printf("2. Insere movimentacao: \n");
-    printf("3. Lista filiais proximas: \n");
-    printf("4. Atualiza movimentacao: \n");
+    system("cls");
+    int op;
+    cout << "\t\tMENU LOGISTICA\n"<<endl;;
+    cout << "1. Insere filial: "<<endl;;
+    cout << "2. Insere movimentacao: "<<endl;;
+    cout << "3. Lista filiais proximas:"<<endl;;
+    cout << "4. Atualiza movimentacao: "<<endl;;
+        cin >> op;
+    return op;
 }
 
 int menu_jogo(){
-    printf("\t\tMENU LOGISTICA\n");
-    printf("1. Insere local do jogo: \n");
-    printf("2. Insere Tempo: \n");
-    printf("3. Lista locais destino: \n");
-    printf("4. Lista locais origem: \n");
-    printf("5. Atualiza tempo: \n");
-    printf("6. Remove Tempo: \n");
-    printf("7. Calcula tempo de locais: \n");
+    system("cls");
+    int op;
+    cout << "\t\tMENU LOGISTICA\n"<<endl;;
+    cout << "1. Insere local do jogo: "<<endl;;
+    cout << "2. Insere Tempo: "<<endl;;
+    cout << "3. Lista locais destino: "<<endl;;
+    cout << "4. Lista locais origem: "<<endl;;
+    cout << "5. Atualiza tempo: "<<endl;;
+    cout << "6. Remove Tempo: "<<endl;;
+    cout << "7. Calcula tempo de locais: "<<endl;;
+        cin >> op;
+    return op;
+}
+
+int chamaMenu()
+{
+    switch (menuPrincipal())
+    {
+    case 1:
+        menu_logistica();
+        break;
+    case 2:
+        menu_jogo();
+        break;
+    default:
+        break;
+    }
 }
 
 void IniciarGrafo(float mat[MaxTam][MaxTam])
