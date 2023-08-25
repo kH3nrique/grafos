@@ -7,7 +7,6 @@
 
 using namespace std;
 
-//
 int menuPrincipal(){
     system("cls");
     int op;
@@ -29,6 +28,7 @@ int menu_logistica(){
     cout << "3. Lista filiais proximas:"<<endl;;
     cout << "4. Atualiza movimentacao: "<<endl;;
     cout << "\n5. Voltar para o menu principal: "<<endl;;
+    cout << "6. Sair do programa: "<<endl;;
         cin >> op;
     return op;
 }
@@ -45,6 +45,7 @@ int menu_jogo(){
     cout << "6. Remove Tempo: "<<endl;;
     cout << "7. Calcula tempo de locais: "<<endl;;
     cout << "\n8. Voltar para o menu principal: "<<endl;;
+    cout << "9. Sair do programa: "<<endl;;
         cin >> op;
     return op;
 }
@@ -75,6 +76,8 @@ int opcoes_menulogistica(){
     case 5:
         chamaMenu();
         break;
+    case 6:
+        break;
     default:
         break;
     }
@@ -86,12 +89,12 @@ int opcoes_menujogo(){
     case 8:
         chamaMenu();
         break;
+    case 9:
+        break;
     default:
         break;
     }
 }
-
-
 
 void IniciarGrafo(float mat[MaxTam][MaxTam])
 {
