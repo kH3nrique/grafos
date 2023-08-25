@@ -1,5 +1,1 @@
-#include "index.h"
-
-main(){
-    
-}
+#include "filial.h"
