@@ -1,41 +1,36 @@
-#include<stdlib.h>
 #include<stdio.h>
 #include<string>
 #include<iostream>
-
-
-//test
 
 #define MaxTam 100
 
 using namespace std;
 
 int menuPrincipal(){
-    printf("\t\tMENU DE OPCOES\n");
-    printf("\n1. Modulo da logistica (grafo nao direcionado)");
-    printf("\n2. Modulo do jogo (grafo direcionado)");
-    printf("\n3. Sair do programa\n\n");
-    printf("Escolha uma opcao: ");
+    cout << "\t\tMENU DE OPCOES\n"<<endl;;
+    cout << "\n1. Modulo da logistica (grafo nao direcionado)"<<endl;;
+    cout << "\n2. Modulo do jogo (grafo direcionado)"<<endl;;
+    cout << "\n3. Sair do programa\n\n"<<endl;;
+    cout << "Escolha uma opcao: "<<endl;;
 }
-//teste
 
 int menu_logistica(){
-    printf("\t\tMENU LOGISTICA\n");
-    printf("1. Insere filial: \n");
-    printf("2. Insere movimentacao: \n");
-    printf("3. Lista filiais proximas: \n");
-    printf("4. Atualiza movimentacao: \n");
+    cout << "\t\tMENU LOGISTICA\n"<<endl;;
+    cout << "1. Insere filial: \n"<<endl;;
+    cout << "2. Insere movimentacao: \n"<<endl;;
+    cout << "3. Lista filiais proximas: \n"<<endl;;
+    cout << "4. Atualiza movimentacao: \n"<<endl;;
 }
 
 int menu_jogo(){
-    printf("\t\tMENU LOGISTICA\n");
-    printf("1. Insere local do jogo: \n");
-    printf("2. Insere Tempo: \n");
-    printf("3. Lista locais destino: \n");
-    printf("4. Lista locais origem: \n");
-    printf("5. Atualiza tempo: \n");
-    printf("6. Remove Tempo: \n");
-    printf("7. Calcula tempo de locais: \n");
+    cout << "\t\tMENU LOGISTICA\n"<<endl;;
+    cout << "1. Insere local do jogo: \n"<<endl;;
+    cout << "2. Insere Tempo: \n"<<endl;;
+    cout << "3. Lista locais destino: \n"<<endl;;
+    cout << "4. Lista locais origem: \n"<<endl;;
+    cout << "5. Atualiza tempo: \n"<<endl;;
+    cout << "6. Remove Tempo: \n"<<endl;;
+    cout << "7. Calcula tempo de locais: \n"<<endl;;
 }
 
 void IniciarGrafo(float mat[MaxTam][MaxTam])
