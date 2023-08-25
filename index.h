@@ -42,14 +42,16 @@ int menu_jogo(){
     return op;
 }
 
-int chamaMenu()
+void chamaMenu()
 {
     switch (menuPrincipal())
     {
     case 1:
         menu_logistica();
         break;
-    
+    case 2:
+        menu_jogo();
+        break;
     default:
         break;
     }
