@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string>
 #include<iostream>
+#include<stdlib.h>
 
 #define MaxTam 100
 
@@ -18,26 +19,28 @@ int menuPrincipal(){
 }
 
 int menu_logistica(){
+    system("cls");
     int op;
     cout << "\t\tMENU LOGISTICA\n"<<endl;;
-    cout << "1. Insere filial: \n"<<endl;;
-    cout << "2. Insere movimentacao: \n"<<endl;;
-    cout << "3. Lista filiais proximas: \n"<<endl;;
-    cout << "4. Atualiza movimentacao: \n"<<endl;;
+    cout << "1. Insere filial: "<<endl;;
+    cout << "2. Insere movimentacao: "<<endl;;
+    cout << "3. Lista filiais proximas:"<<endl;;
+    cout << "4. Atualiza movimentacao: "<<endl;;
         cin >> op;
     return op;
 }
 
 int menu_jogo(){
+    system("cls");
     int op;
     cout << "\t\tMENU LOGISTICA\n"<<endl;;
-    cout << "1. Insere local do jogo: \n"<<endl;;
-    cout << "2. Insere Tempo: \n"<<endl;;
-    cout << "3. Lista locais destino: \n"<<endl;;
-    cout << "4. Lista locais origem: \n"<<endl;;
-    cout << "5. Atualiza tempo: \n"<<endl;;
-    cout << "6. Remove Tempo: \n"<<endl;;
-    cout << "7. Calcula tempo de locais: \n"<<endl;;
+    cout << "1. Insere local do jogo: "<<endl;;
+    cout << "2. Insere Tempo: "<<endl;;
+    cout << "3. Lista locais destino: "<<endl;;
+    cout << "4. Lista locais origem: "<<endl;;
+    cout << "5. Atualiza tempo: "<<endl;;
+    cout << "6. Remove Tempo: "<<endl;;
+    cout << "7. Calcula tempo de locais: "<<endl;;
         cin >> op;
     return op;
 }
