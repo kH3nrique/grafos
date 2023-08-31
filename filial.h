@@ -7,22 +7,6 @@ void InseriFilial()
     string filial;
 }
 
-void menuLogistica()
-{
-    int n;
-    cout << "1. Inserir filial" <<endl;
-    cout << "2. Remover filial" <<endl;
-        cin >> n;
-    switch (n)
-    {
-    case 1:
-        break;
-    
-    default:
-        break;
-    }
-}
-
 int pesquisaFilial(string filiais[50], string filial)
 {
     int i;
@@ -35,5 +19,24 @@ int pesquisaFilial(string filiais[50], string filial)
         return -1;
     else
         return i;
+}    
+
+
+void menuLogistica()
+{
+    int n;
+    cout << "1. Inserir filial" <<endl;
+    cout << "2. Pesquisar filial" <<endl;
+        cin >> n;
+    switch (n)
+    {
+    case 1:
+        
+        break;
     
+    case 2:
+        pesquisaFilial();
+    default:
+        break;
+    }
 }
