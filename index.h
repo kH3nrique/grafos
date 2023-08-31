@@ -23,14 +23,14 @@ int menuPrincipal(){
 int menu_logistica(){
     system("cls");
     int op;
-    cout << "\t\tMENU LOGISTICA\n"<<endl;;
-    cout << "1. Insere filial: "<<endl;;
-    cout << "2. Insere movimentacao: "<<endl;;
-    cout << "3. Lista filiais proximas:"<<endl;;
-    cout << "4. Atualiza movimentacao: "<<endl;;
-    cout << "\n5. Voltar para o menu principal: "<<endl;;
-    cout << "Escolha uma opcao: "<<endl;;
-    cout << "6. Sair do programa: "<<endl;;
+    cout << "\t\tMENU LOGISTICA\n"<<endl;
+    cout << "1. Insere filial: "<<endl;
+    cout << "2. Insere movimentacao: "<<endl;
+    cout << "3. Lista filiais proximas:"<<endl;
+    cout << "4. Atualiza movimentacao: "<<endl;
+    cout << "5. Voltar para o menu principal: "<<endl;
+    cout << "6. Sair do programa: "<<endl;
+    cout << "Escolha uma opcao: "<<endl;
         cin >> op;
     return op;
 }
@@ -38,24 +38,24 @@ int menu_logistica(){
 int menu_jogo(){
     system("cls");
     int op;
-    cout << "\t\tMENU LOGISTICA\n"<<endl;;
-    cout << "1. Insere local do jogo: "<<endl;;
-    cout << "2. Insere Tempo: "<<endl;;
-    cout << "3. Lista locais destino: "<<endl;;
-    cout << "4. Lista locais origem: "<<endl;;
-    cout << "5. Atualiza tempo: "<<endl;;
-    cout << "6. Remove Tempo: "<<endl;;
-    cout << "7. Calcula tempo de locais: "<<endl;;
-    cout << "\n8. Voltar para o menu principal: "<<endl;
-    cout << "Escolha uma opcao: "<<endl;;
-    cout << "\n8. Voltar para o menu principal: "<<endl;;
-    cout << "9. Sair do programa: "<<endl;;
+    cout << "\t\tMENU LOGISTICA\n"<<endl;
+    cout << "1. Insere local do jogo: "<<endl;
+    cout << "2. Insere Tempo: "<<endl;
+    cout << "3. Lista locais destino: "<<endl;
+    cout << "4. Lista locais origem: "<<endl;
+    cout << "5. Atualiza tempo: "<<endl;
+    cout << "6. Remove Tempo: "<<endl;
+    cout << "7. Calcula tempo de locais: "<<endl;
+    cout << "8. Voltar para o menu principal: "<<endl;
+    cout << "9. Sair do programa: "<<endl;
+    cout << "Escolha uma opcao: "<<endl;
+    
         cin >> op;
     return op;
 }
 
-int opcoes_menulogistica();
-int opcoes_menujogo();
+void opcoes_menulogistica();
+void opcoes_menujogo();
 
 int chamaMenu()
 {
@@ -74,7 +74,7 @@ int chamaMenu()
     }
 }
 
-int opcoes_menulogistica(){
+void opcoes_menulogistica(){
     int op;
     switch (op) {
     case 5:
@@ -87,35 +87,13 @@ int opcoes_menulogistica(){
     }
 }
 
-int opcoes_menujogo(){
+void opcoes_menujogo(){
     int op;
     switch (op) {
     case 8:
         chamaMenu();
         break;
     case 9:
-        break;
-    default:
-        break;
-    }
-}
-
-int opcoes_menulogistica(){
-    int op;
-    switch (op) {
-    case 5:
-        chamaMenu();
-        break;
-    default:
-        break;
-    }
-}
-
-int opcoes_menujogo(){
-    int op;
-    switch (op) {
-    case 8:
-        chamaMenu();
         break;
     default:
         break;

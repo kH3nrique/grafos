@@ -10,7 +10,7 @@ void InseriFilial()
 int pesquisaFilial(string filiais[50], string filial)
 {
     int i;
-    for (int i = 0; i < q_filial; i++)
+    for (i = 0; i < q_filial; i++)
     {
         if(filiais[i] == filial)
             break;
@@ -35,7 +35,7 @@ void menuLogistica()
         break;
     
     case 2:
-        pesquisaFilial();
+        //pesquisaFilial();
     default:
         break;
     }
