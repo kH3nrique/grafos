@@ -40,3 +40,8 @@ void menuLogistica()
         break;
     }
 }
+
+
+int insereMovimentacao(){
+
+}
