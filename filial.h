@@ -1,24 +1,9 @@
-#include "index.h"
+#include<stdio.h>
+#include<string.h>
+#include<iostream>
+#include<stdlib.h>
 
+#define MaxTam 100
 
-void InseriFilial()
-{
-    string filial;
-}
+using namespace std;
 
-void menuLogistica()
-{
-    int n;
-    cout << "1. Inserir filial" <<endl;
-    cout << "2. Remover filial" <<endl;
-        cin >> n;
-    switch (n)
-    {
-    case 1:
-        
-        break;
-    
-    default:
-        break;
-    }
-}

@@ -288,3 +288,13 @@ void executarMenu(struct Jogo* jogo) {
         }
     } while (opcao != 0);
 }
+
+int main() {
+    struct Jogo jogo; 
+
+    jogo.numLocais = 0;
+
+    executarMenu(&jogo);
+
+    return 0;
+}
