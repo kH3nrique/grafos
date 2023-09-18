@@ -36,7 +36,7 @@ void insereLocalJogo(struct Jogo* jogo, const char* nomeLocal) {
     // Copia o nome do novo local para a matriz de locais no jogo
     strcpy(jogo->locais[jogo->numLocais], nomeLocal);
     
-    int novoIndice = jogo->numLocais++;
+    //int novoIndice = jogo->numLocais++;
 
     cout << "Local '" << nomeLocal << "' inserido com sucesso." << endl;
 }
@@ -213,6 +213,7 @@ void executarMenuJogo(struct Jogo* jogo) {
     vector<string> cidades; // armazenar as cidades inseridas
     
     do {
+        system("cls");
         cout << "MENU:" << endl;
         cout << "1. Inserir local" << endl;
         cout << "2. Inserir tempo de deslocamento" << endl;
@@ -262,6 +263,7 @@ void executarMenuJogo(struct Jogo* jogo) {
 
                 if (strcmp(localPartida, nomeLocalB) == 0) {
                     cout << "O local nao possui destino!!" << endl;
+                    system("pause");
                 } else {
                     listaLocaisDestino(jogo, localPartida);
                 }
@@ -276,6 +278,7 @@ void executarMenuJogo(struct Jogo* jogo) {
 
                 if (strcmp(localDestino, nomeLocalA) == 0) {
                     cout << "O local nao possui origem!!" << endl;
+                    system("pause");
                 }
                 else {
                     listaLocaisOrigem(jogo, localDestino);

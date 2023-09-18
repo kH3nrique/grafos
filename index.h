@@ -30,4 +30,5 @@ int chamaMenu() {
     default:
         break;
     }
+    return 0;
 }
