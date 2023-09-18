@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <vector> 
 
 #define MAX_LOCATIONS 100
 
@@ -70,7 +71,7 @@ void insereTempoDeslocamento(struct Jogo* jogo, const char* localA, const char* 
 }
 
 void listaLocaisDestino(const struct Jogo* jogo, const char* localPartida) {
-    int indicePartida = -1; 
+    int indicePartida = -1;
 
     // Procurar o índice do local de partida na lista de locais
     for (int i = 0; i < jogo->numLocais; ++i) {
@@ -126,8 +127,8 @@ void listaLocaisOrigem(const struct Jogo* jogo, const char* localDestino) {
 }
 
 void atualizaTempo(struct Jogo* jogo, const char* localA, const char* localB) {
-    int indiceA = -1;  
-    int indiceB = -1;  
+    int indiceA = -1;
+    int indiceB = -1;
 
     // Procura os índices dos locais no jogo
     for (int i = 0; i < jogo->numLocais; ++i) {
@@ -211,6 +212,8 @@ int calculaTemposLocais(const struct Jogo* jogo) {
 
 void executarMenu(struct Jogo* jogo) {
     int opcao;
+    char nomeLocalA[100], nomeLocalB[100];
+    vector<string> cidades; // armazenar as cidades inseridas
     
     do {
         cout << "MENU:" << endl;
@@ -222,61 +225,94 @@ void executarMenu(struct Jogo* jogo) {
         cout << "6. Remover tempo de deslocamento" << endl;
         cout << "7. Calcular somatório dos tempos de deslocamento" << endl;
         cout << "0. Sair" << endl;
-        cout << "Escolha uma opção: ";
+        cout << "Escolha uma opcao: ";
         cin >> opcao;
 
         switch (opcao) {
             case 1: {
                 char nomeLocal[100];
-                cout << "Digite o nome do novo local: ";
-                cin >> nomeLocal;
-                insereLocalJogo(jogo, nomeLocal);
-                break;
+                cout << "\n";
+
+                while (true) {
+                    cout << "Digite o nome do novo local ou 'sair' para sair: ";
+                    cin >> nomeLocal;
+
+                    if (strcmp(nomeLocal, "sair") == 0) {
+                        break; 
+                    }
+
+                    insereLocalJogo(jogo, nomeLocal);
+                    cidades.push_back(nomeLocal); // Adiciona o nome da cidade ao vetor
+                }
+                cout << "\n";
+            break;
             }
             case 2: {
-                char nomeLocalA[100], nomeLocalB[100];
+                cout << "\n";
                 cout << "Digite o nome do primeiro local: ";
                 cin >> nomeLocalA;
                 cout << "Digite o nome do segundo local: ";
                 cin >> nomeLocalB;
                 insereTempoDeslocamento(jogo, nomeLocalA, nomeLocalB);
+                cout << "\n";
                 break;
             }
             case 3: {
                 char localPartida[100];
+                cout << "\n";
                 cout << "Digite o nome do local de partida: ";
                 cin >> localPartida;
-                listaLocaisDestino(jogo, localPartida);
+
+                if (strcmp(localPartida, nomeLocalB) == 0) {
+                    cout << "O local nao possui destino!!" << endl;
+                } else {
+                    listaLocaisDestino(jogo, localPartida);
+                }
+                cout << "\n";
                 break;
             }
             case 4: {
                 char localDestino[100];
+                cout << "\n";
                 cout << "Digite o nome do local de destino: ";
                 cin >> localDestino;
-                listaLocaisOrigem(jogo, localDestino);
+
+                if (strcmp(localDestino, nomeLocalA) == 0) {
+                    cout << "O local nao possui origem!!" << endl;
+                }
+                else {
+                    listaLocaisOrigem(jogo, localDestino);
+                }
+                cout << "\n";
                 break;
             }
             case 5: {
                 char localA[100], localB[100];
+                cout << "\n";
                 cout << "Digite o nome do primeiro local: ";
                 cin >> localA;
                 cout << "Digite o nome do segundo local: ";
                 cin >> localB;
                 atualizaTempo(jogo, localA, localB);
+                cout << "\n";
                 break;
             }
             case 6: {
                 char localX[100], localY[100];
+                cout << "\n";
                 cout << "Digite o nome do primeiro local: ";
                 cin >> localX;
                 cout << "Digite o nome do segundo local: ";
                 cin >> localY;
                 removeTempo(jogo, localX, localY);
+                cout << "\n";
                 break;
             }
             case 7: {
                 int somaTempos = calculaTemposLocais(jogo);
+                cout << "\n";
                 cout << "Somatório dos tempos de deslocamento: " << somaTempos << " segundos" << endl;
+                cout << "\n";
                 break;
             }
             case 0:
@@ -287,11 +323,15 @@ void executarMenu(struct Jogo* jogo) {
                 break;
         }
     } while (opcao != 0);
+    
+    cout << "Cidades inseridas pelo usuário:" << endl;
+    for (const string& cidade : cidades) {
+        cout << cidade << endl;
+    }
 }
 
 int main() {
-    struct Jogo jogo; 
-
+    struct Jogo jogo;
     jogo.numLocais = 0;
 
     executarMenu(&jogo);
