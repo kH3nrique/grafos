@@ -1,7 +1,10 @@
-#include "jogo.h"
+#include"index.h"
 
-int main()
-{
+#define MaxTam 100
+
+using namespace std;
+
+int main() {
     chamaMenu();
     return 0;
 }

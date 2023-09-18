@@ -1,49 +1,44 @@
-#include "index.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <iostream>
+#include <cstring>
+#include <vector> 
 
-int q_filial;
+#define MaxTam 100
 
-void InseriFilial()
+using namespace std;
+
+struct Filial
 {
-    string filial;
+    /* data */
+};
 
-}
-
-void menuLogistica()
-{
-    int n;
-    cout << "1. Inserir filial" <<endl;
-    cout << "2. Pesquisar filial" <<endl;
-        cin >> n;
-    switch (n)
+void IniciarGrafo(float mat[MaxTam][MaxTam]) {
+    for (int i = 0; i < MaxTam; i++)
     {
-    case 1:        
-        InseriFilial();
-        break;
-    
-    case 2:
-        //pesquisaFilial();
-    default:
-        break;
+        for (int j = 0; j < MaxTam; j++)
+        {
+            mat[i][j] = 0;
+        }
     }
 }
 
+int menu_logistica(){
+    system("cls");
+    int op;
+    cout << "\t\tMENU LOGISTICA\n"<<endl;;
+    cout << "1. Insere filial: "<<endl;;
+    cout << "2. Insere movimentacao: "<<endl;;
+    cout << "3. Lista filiais proximas:"<<endl;;
+    cout << "4. Atualiza movimentacao: "<<endl;;
+    cout << "\n5. Voltar para o menu principal: "<<endl;;
+    cout << "6. Sair do programa: "<<endl;;
+        cin >> op;
+    return op;
+}
 
-
-int pesquisaFilial(string filiais[50], string filial)
-{
-    int i;
-    for (i = 0; i < q_filial; i++)
-    {
-        if(filiais[i] == filial)
-            break;
-    }
-    if (i == q_filial)
-        return -1;
-    else
-        return i;
-}    
-
-int insereMovimentacao()
+int excutarMenuFilial(struct Filial* filial)
 {
 
 }
