@@ -5,23 +5,30 @@
 #include <cstring>
 #include <vector> 
 
-#define MaxTam 100
+#define MAX_LOCATIONS 100
 
 using namespace std;
 
 struct Filial
 {
-    /* data */
+    int numLocais;
+    char locais[MAX_LOCATIONS][100];
+    int matrizAdjacencia[MAX_LOCATIONS][MAX_LOCATIONS];
 };
 
-void IniciarGrafo(float mat[MaxTam][MaxTam]) {
-    for (int i = 0; i < MaxTam; i++)
+void IniciarGrafo(float mat[MAX_LOCATIONS][MAX_LOCATIONS]) {
+    for (int i = 0; i < MAX_LOCATIONS; i++)
     {
-        for (int j = 0; j < MaxTam; j++)
+        for (int j = 0; j < MAX_LOCATIONS; j++)
         {
             mat[i][j] = 0;
         }
     }
+}
+
+void insereFilial()
+{
+
 }
 
 void excutarMenuFilial(struct Filial* filial)
@@ -37,4 +44,13 @@ void excutarMenuFilial(struct Filial* filial)
     cout << "0. Sair do programa: "<<endl;
         cin >> op;
 
+    switch (op)
+    {
+    case 1:
+        /* code */
+        break;
+    
+    default:
+        break;
+    }
 }
