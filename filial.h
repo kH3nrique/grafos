@@ -26,14 +26,40 @@ void IniciarGrafo(float mat[MAX_LOCATIONS][MAX_LOCATIONS]) {
     }
 }
 
+bool localExiste(const struct Filial* filial, const char* nomeLocal) {
+    for (int i = 0; i < filial->numLocais; ++i) {
+        if (strcmp(filial->locais[i], nomeLocal) == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void insereFilial(struct Filial* filial, const char* nomeLocal)
 {
+    // Numero de locais atingidos?
+    if (filial->numLocais >= MAX_LOCATIONS) { 
+        cout << "Limite de locais atingido. Não é possível adicionar mais locais." << endl;
+        return;
+    }
 
+    // Local existe?
+    if (localExiste(filial, nomeLocal)) {
+        cout << "Local '" << nomeLocal << "' já existe no filial. Insira um nome único." << endl;
+        return;
+    }
+
+    // Copia o nome do novo local para a matriz de locais no filial
+    strcpy(filial->locais[filial->numLocais], nomeLocal);
+    
+    int novoIndice = filial->numLocais++;
+
+    cout << "Local '" << nomeLocal << "' inserido com sucesso." << endl;
 }
 
 void excutarMenuFilial(struct Filial* filial)
 {
-    vector<vector>
+    vector<string> cdd;
     system("cls");
     int op;
     cout << "\t\tMENU LOGISTICA\n"<<endl;
@@ -48,7 +74,17 @@ void excutarMenuFilial(struct Filial* filial)
     switch (op)
     {
     case 1:
-        insereFilial(&filial, cdd);
+        char nFilial[100];
+        while (true) {
+                    cout << "\nDigite o nome do novo local ou 'sair' para sair: ";
+                    cin >> nFilial;
+
+                    if (strcmp(nFilial, "sair") == 0) {
+                        break; 
+                    }
+                    insereFilial(filial, nFilial);
+                    cdd.push_back(nFilial); // Adiciona o nome da cidade ao vetor
+                }
         break;
     
     default:
