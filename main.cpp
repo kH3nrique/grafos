@@ -1,6 +1,4 @@
 #include"index.h"
-#include"filial.h"
-#include"jogo.h"
 
 #define MaxTam 100
 
@@ -10,4 +8,3 @@ int main() {
     chamaMenu();
     return 0;
 }
-
