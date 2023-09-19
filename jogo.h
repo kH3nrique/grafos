@@ -1,6 +1,7 @@
 #ifndef JOGO_H
 #define JOGO_H
 
+#include "filial.h"
 #include "index.h"
 
 #define MAX_LOCATIONS 100

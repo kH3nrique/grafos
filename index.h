@@ -32,12 +32,13 @@ void executarMenu(struct Jogo* jogo);
 
 void switchMenu(){
     struct Jogo jogo;
+    struct Filial filial;
 
     bool lmao = true;
     while(lmao){
         switch (menuPrincipal()) {
             case 1:
-                //Coloca aqui henrique
+                excutarMenuFilial(&filial);
                 break;
             case 2:
                 executarMenu(&jogo);

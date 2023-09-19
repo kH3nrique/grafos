@@ -1,8 +1,6 @@
-#ifndef FILIAL_H
-#define FILIAL_H
-
-#include <cstdio>
-#include <cstdlib>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <iostream>
 #include <cstring>
 #include <vector> 
@@ -15,7 +13,7 @@ struct Filial
 {
     int nFiliais;
     char locais[MAX_LOCATIONS][MAX_LOCATIONS];
-    int tempo[MAX_LOCATIONS][MAX_LOCATIONS];//matrizAdjacencia
+    int custo[MAX_LOCATIONS][MAX_LOCATIONS];//matrizAdjacencia
 };
 
 bool localExiste(const struct Filial* filial, const char* nomeLocal) {
@@ -44,8 +42,6 @@ void insereFilial(struct Filial* filial, const char* nomeLocal)
     // Copia o nome do novo local para a matriz de locais no filial
     strcpy(filial->locais[filial->nFiliais], nomeLocal);
     
-    int novoIndice = filial->nFiliais++;
-
     cout << "Local '" << nomeLocal << "' inserido com sucesso." << endl;
 }
 
@@ -64,14 +60,29 @@ void insereMovimentacao(struct Filial* filial, const char* filial_um, const char
         cout << "Filial(is) não encontrada(s)" <<endl;
         return;
     }
-    cout << "Tempo de viagem entre as filiais: ";
-        cin >> filial->tempo[i1][i2];
-    filial->tempo[i2][i1] = filial->tempo[i1][i2];
+    cout << "Custo da viagem entre filiais: ";
+        cin >> filial->custo[i1][i2];
+    filial->custo[i2][i1] = filial->custo[i1][i2];
 }
 
-void listaFiliaisProximas()
+void listaFiliaisProximas(struct Filial* filial, const char* pFilial)
 {
+    if (localExiste(filial, pFilial))
+    {
+        cout << "Filial nao cadastrada!"<<endl;
+        return;
+    }
     
+    for (int i = 0; i < filial->nFiliais; i++)
+    {
+        
+    }
+    
+    /*
+    após o usuário escolher uma filial hipotética i, o programa deverá listar todas as filiais j
+    para as quais exista alguma movimentação (i,j) de mercadoria cadastrada, inclusive com os custos de
+    movimentação para cada uma delas;
+    */
 }
 
 void excutarMenuFilial(struct Filial* filial)
@@ -88,7 +99,6 @@ void excutarMenuFilial(struct Filial* filial)
     cout << "0. Sair do programa: "<<endl;
         cin >> op;
 
-<<<<<<< Updated upstream
     switch (op)
     {
     case 1:
@@ -117,8 +127,3 @@ void excutarMenuFilial(struct Filial* filial)
         break;
     }
 }
-=======
-}
-
-#endif
->>>>>>> Stashed changes
