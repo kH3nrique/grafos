@@ -11,23 +11,13 @@ using namespace std;
 
 struct Filial
 {
-    int numLocais;
-    char locais[MAX_LOCATIONS][100];
-    int mat[MAX_LOCATIONS][MAX_LOCATIONS];//matrizAdjacencia
+    int nFiliais;
+    char locais[MAX_LOCATIONS][MAX_LOCATIONS];
+    int tempo[MAX_LOCATIONS][MAX_LOCATIONS];//matrizAdjacencia
 };
 
-void IniciarGrafo(float mat[MAX_LOCATIONS][MAX_LOCATIONS]) {
-    for (int i = 0; i < MAX_LOCATIONS; i++)
-    {
-        for (int j = 0; j < MAX_LOCATIONS; j++)
-        {
-            mat[i][j] = 0;
-        }
-    }
-}
-
 bool localExiste(const struct Filial* filial, const char* nomeLocal) {
-    for (int i = 0; i < filial->numLocais; ++i) {
+    for (int i = 0; i < filial->nFiliais; ++i) {
         if (strcmp(filial->locais[i], nomeLocal) == 0) {
             return true;
         }
@@ -38,7 +28,7 @@ bool localExiste(const struct Filial* filial, const char* nomeLocal) {
 void insereFilial(struct Filial* filial, const char* nomeLocal)
 {
     // Numero de locais atingidos?
-    if (filial->numLocais >= MAX_LOCATIONS) { 
+    if (filial->nFiliais >= MAX_LOCATIONS) { 
         cout << "Limite de locais atingido. Não é possível adicionar mais locais." << endl;
         return;
     }
@@ -50,11 +40,36 @@ void insereFilial(struct Filial* filial, const char* nomeLocal)
     }
 
     // Copia o nome do novo local para a matriz de locais no filial
-    strcpy(filial->locais[filial->numLocais], nomeLocal);
+    strcpy(filial->locais[filial->nFiliais], nomeLocal);
     
-    int novoIndice = filial->numLocais++;
+    int novoIndice = filial->nFiliais++;
 
     cout << "Local '" << nomeLocal << "' inserido com sucesso." << endl;
+}
+
+void insereMovimentacao(struct Filial* filial, const char* filial_um, const char* filial_dois)
+{
+    int i1 = -1, i2 = -1;
+    for (int i = 0; i < filial->nFiliais; i++)
+    {
+        if (strcmp(filial->locais[i], filial_um))
+            i1 = i;
+        if (strcmp(filial->locais[i], filial_dois))
+            i2 = i;
+    }
+    if (i1 == -1 || i2 == -1)
+    {
+        cout << "Filial(is) não encontrada(s)" <<endl;
+        return;
+    }
+    cout << "Tempo de viagem entre as filiais: ";
+        cin >> filial->tempo[i1][i2];
+    filial->tempo[i2][i1] = filial->tempo[i1][i2];
+}
+
+void listaFiliaisProximas()
+{
+    
 }
 
 void excutarMenuFilial(struct Filial* filial)
@@ -76,17 +91,25 @@ void excutarMenuFilial(struct Filial* filial)
     case 1:
         char nFilial[100];
         while (true) {
-                    cout << "\nDigite o nome do novo local ou 'sair' para sair: ";
-                    cin >> nFilial;
+            cout << "\nDigite o nome do novo local ou 'sair' para sair: ";
+            cin >> nFilial;
+            if (strcmp(nFilial, "sair") == 0)
+            break; 
 
-                    if (strcmp(nFilial, "sair") == 0) {
-                        break; 
-                    }
-                    insereFilial(filial, nFilial);
-                    cdd.push_back(nFilial); // Adiciona o nome da cidade ao vetor
-                }
+            insereFilial(filial, nFilial);
+            cdd.push_back(nFilial); // Adiciona o nome da cidade ao vetor
+        }
         break;
-    
+    case 2: 
+        char cfilial1[100], cfilail2[100];
+        cout <<"Digite a cidades das duas filiais:"<<endl;
+            cin >> cfilial1;
+            cin >> cfilail2;
+            insereMovimentacao(filial, cfilial1, cfilail2);
+        break;
+    case 3:
+
+        break;
     default:
         break;
     }
