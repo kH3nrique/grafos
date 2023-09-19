@@ -326,3 +326,12 @@ void executarMenu(struct Jogo* jogo) {
         cout << cidade << endl;
     }
 }
+
+int main() {
+    struct Jogo jogo;
+    jogo.numLocais = 0;
+
+    executarMenu(&jogo);
+
+    return 0;
+}
