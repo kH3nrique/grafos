@@ -11,7 +11,7 @@ using namespace std;
 
 struct Filial
 {
-    int nFiliais;
+    int nFiliais = 0;
     char locais[MAX_LOCATIONS][MAX_LOCATIONS];
     int custo[MAX_LOCATIONS][MAX_LOCATIONS];//matrizAdjacencia
 };
@@ -25,24 +25,24 @@ bool localExiste(const struct Filial* filial, const char* nomeLocal) {
     return false;
 }
 
-void insereFilial(struct Filial* filial, const char* nomeLocal)
+void insereFilial(struct Filial* filial, const char* cidade)
 {
     // Numero de locais atingidos?
     if (filial->nFiliais >= MAX_LOCATIONS) { 
-        cout << "Limite de locais atingido. Não é possível adicionar mais locais." << endl;
+        cout << "Limite de locais atingido!!!" << endl;
         return;
     }
 
     // Local existe?
-    if (localExiste(filial, nomeLocal)) {
-        cout << "Local '" << nomeLocal << "' já existe no filial. Insira um nome único." << endl;
+    if (localExiste(filial, cidade)) {
+        cout << "Local '" << cidade << "' já existe no filial. Insira um nome único." << endl;
         return;
     }
 
     // Copia o nome do novo local para a matriz de locais no filial
-    strcpy(filial->locais[filial->nFiliais], nomeLocal);
-    
-    cout << "Local '" << nomeLocal << "' inserido com sucesso." << endl;
+    strcpy(filial->locais[filial->nFiliais], cidade);
+    cout << "Filial '" << filial->locais[filial->nFiliais] << "' inserido com sucesso." << endl;
+    filial->nFiliais++;
 }
 
 void insereMovimentacao(struct Filial* filial, const char* filial_um, const char* filial_dois)
@@ -85,45 +85,52 @@ void listaFiliaisProximas(struct Filial* filial, const char* pFilial)
     */
 }
 
-void excutarMenuFilial(struct Filial* filial)
+void executarMenuFilial(struct Filial* filial)
 {
     vector<string> cdd;
-    system("cls");
     int op;
-    cout << "\t\tMENU LOGISTICA\n"<<endl;
-    cout << "1. Insere filial: "<<endl;
-    cout << "2. Insere movimentacao: "<<endl;
-    cout << "3. Lista filiais proximas:"<<endl;
-    cout << "4. Atualiza movimentacao: "<<endl;
-    cout << "5. Voltar para o menu principal: "<<endl;
-    cout << "0. Sair do programa: "<<endl;
-        cin >> op;
+        do
+        {
+        cout << "\t\tMENU LOGISTICA\n"<<endl;
+        cout << "1. Insere filial"<<endl;
+        cout << "2. Insere movimentacao"<<endl;
+        cout << "3. Lista filiais proximas"<<endl;
+        cout << "4. Atualiza movimentacao"<<endl;
+        cout << "5. Voltar para o menu principal"<<endl;
+        cout << "0. Sair do programa"<<endl;
+        cout << "Insira sua escolha: ";
+            cin >> op;
 
-    switch (op)
-    {
-    case 1:
-        char nFilial[100];
-        while (true) {
-            cout << "\nDigite o nome do novo local ou 'sair' para sair: ";
-            cin >> nFilial;
-            if (strcmp(nFilial, "sair") == 0)
-            break; 
+        switch (op)
+        {
+        case 1:
+            char nFilial[100];
+            while (true) {
+                cout << "\nDigite o nome do novo local ou 'sair' para sair: ";
+                cin >> nFilial;
+                if (strcmp(nFilial, "sair") == 0){
+                    break;  
+                }
 
-            insereFilial(filial, nFilial);
-            cdd.push_back(nFilial); // Adiciona o nome da cidade ao vetor
+
+                insereFilial(filial, nFilial);
+                cdd.push_back(nFilial); // Adiciona o nome da cidade ao vetor
+            }
+            break;
+        case 2: 
+            char cfilial1[100], cfilail2[100];
+            cout <<"Digite a cidades das duas filiais:"<<endl;
+                cin >> cfilial1;
+                cin >> cfilail2;
+                insereMovimentacao(filial, cfilial1, cfilail2);
+            break;
+        case 3:
+            
+            break;
+        default:
+            break;
         }
-        break;
-    case 2: 
-        char cfilial1[100], cfilail2[100];
-        cout <<"Digite a cidades das duas filiais:"<<endl;
-            cin >> cfilial1;
-            cin >> cfilail2;
-            insereMovimentacao(filial, cfilial1, cfilail2);
-        break;
-    case 3:
-
-        break;
-    default:
-        break;
-    }
+    } while (op != 0);
+    
+    
 }
