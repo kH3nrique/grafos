@@ -263,11 +263,12 @@ void executarMenu(struct Jogo* jogo) {
                 cout << "Digite o nome do local de partida: ";
                 cin >> localPartida;
 
-                if (strcmp(localPartida, nomeLocalB) == 0) {
-                    cout << "O local nao possui destino!!" << endl;
-                } else {
+                if (strcmp(localPartida, nomeLocalA) == 0) {
                     listaLocaisDestino(jogo, localPartida);
+                } else {
+                    cout << "O local nao possui destino!!" << endl;
                 }
+                
                 cout << "\n";
                 break;
             }
@@ -311,7 +312,7 @@ void executarMenu(struct Jogo* jogo) {
             case 7: {
                 int somaTempos = calculaTemposLocais(jogo);
                 cout << "\n";
-                cout << "Somatório dos tempos de deslocamento: " << somaTempos << " segundos" << endl;
+                cout << "Somatorio dos tempos de deslocamento: " << somaTempos << " segundos" << endl;
                 cout << "\n";
                 break;
             }
