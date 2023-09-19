@@ -5,6 +5,8 @@
 #include <cstring>
 #include <vector>
 #include "jogo.h"
+#include "filial.h"
+
 
 #define MaxTam 100
 
