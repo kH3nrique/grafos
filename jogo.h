@@ -1,17 +1,13 @@
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <vector> 
+#ifndef JOGO_H
+#define JOGO_H
+
+#include "index.h"
 
 #define MAX_LOCATIONS 100
 
 using namespace std;
 
-struct Jogo {
-    int numLocais;
-    char locais[MAX_LOCATIONS][100];
-    int matrizAdjacencia[MAX_LOCATIONS][MAX_LOCATIONS];
-};
+struct Jogo;
 
 // Verificar se local existe
 bool localExiste(const struct Jogo* jogo, const char* nomeLocal) {
@@ -39,7 +35,7 @@ void insereLocalJogo(struct Jogo* jogo, const char* nomeLocal) {
     // Copia o nome do novo local para a matriz de locais no jogo
     strcpy(jogo->locais[jogo->numLocais], nomeLocal);
     
-    int novoIndice = jogo->numLocais++;
+    // int novoIndice = jogo->numLocais++;
 
     cout << "Local '" << nomeLocal << "' inserido com sucesso." << endl;
 }
@@ -220,7 +216,7 @@ void executarMenu(struct Jogo* jogo) {
         cout << "5. Atualizar tempo de deslocamento" << endl;
         cout << "6. Remover tempo de deslocamento" << endl;
         cout << "7. Calcular somatorio dos tempos de deslocamento" << endl;
-        cout << "0. Sair" << endl;
+        cout << "8. Voltar para o menu principal" << endl;
         cout << "Escolha uma opcao: ";
         cin >> opcao;
 
@@ -312,9 +308,9 @@ void executarMenu(struct Jogo* jogo) {
                 cout << "\n";
                 break;
             }
-            case 0:
-                cout << "Saindo do programa." << endl;
-                break;
+            case 8: {
+                return;
+            }
             default:
                 cout << "Opção inválida. Tente novamente." << endl;
                 break;
@@ -326,3 +322,5 @@ void executarMenu(struct Jogo* jogo) {
         cout << cidade << endl;
     }
 }
+
+#endif
