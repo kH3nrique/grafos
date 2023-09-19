@@ -13,7 +13,7 @@ struct Filial
 {
     int numLocais;
     char locais[MAX_LOCATIONS][100];
-    int matrizAdjacencia[MAX_LOCATIONS][MAX_LOCATIONS];
+    int mat[MAX_LOCATIONS][MAX_LOCATIONS];//matrizAdjacencia
 };
 
 void IniciarGrafo(float mat[MAX_LOCATIONS][MAX_LOCATIONS]) {
@@ -26,13 +26,14 @@ void IniciarGrafo(float mat[MAX_LOCATIONS][MAX_LOCATIONS]) {
     }
 }
 
-void insereFilial()
+void insereFilial(struct Filial* filial, const char* nomeLocal)
 {
 
 }
 
 void excutarMenuFilial(struct Filial* filial)
 {
+    vector<vector>
     system("cls");
     int op;
     cout << "\t\tMENU LOGISTICA\n"<<endl;
@@ -47,7 +48,7 @@ void excutarMenuFilial(struct Filial* filial)
     switch (op)
     {
     case 1:
-        /* code */
+        insereFilial(&filial, cdd);
         break;
     
     default:
