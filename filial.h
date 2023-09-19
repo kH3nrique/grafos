@@ -1,6 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#ifndef FILIAL_H
+#define FILIAL_H
+
+#include <cstdio>
+#include <cstdlib>
 #include <iostream>
 #include <cstring>
 #include <vector> 
@@ -71,6 +73,7 @@ void excutarMenuFilial(struct Filial* filial)
     cout << "0. Sair do programa: "<<endl;
         cin >> op;
 
+<<<<<<< Updated upstream
     switch (op)
     {
     case 1:
@@ -91,3 +94,8 @@ void excutarMenuFilial(struct Filial* filial)
         break;
     }
 }
+=======
+}
+
+#endif
+>>>>>>> Stashed changes
