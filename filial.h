@@ -65,14 +65,14 @@ void insereMovimentacao(struct Filial* filial, const char* filial_um, const char
     int i1 = -1, i2 = -1;
     for (int i = 0; i < filial->andaFiliais; i++)
     {
-        if (strcmp(filial->filiais[i], filial_um))
+        if (strcmp(filial->filiais[i], filial_um) == 0)
         {
             i1 = i;
             filial->grafo[filial->andaGrafo] = i;
             filial->andaGrafo++;
         }
             
-        if (strcmp(filial->filiais[i], filial_dois))
+        if (strcmp(filial->filiais[i], filial_dois) == 0)
         {
             i2 = i;
             filial->grafo[filial->andaGrafo] = i;
@@ -182,28 +182,40 @@ void removeFilial(struct Filial* filial, const char* eFilial)
             filial->grafo[i+1] = filial->grafo[i+3];
         }
     }
-    for (int i = exclui; i < filial->andaFiliais; i++)
+    for (int i = exclui; i < filial->andaFiliais-1; i++)
     {
-        strcmp(filial->filiais[i], filial->filiais[i+1]);
+        strcpy(filial->filiais[i], filial->filiais[i+1]);
     }
     filial->andaFiliais--;
+
+    cout << "Filiais ainda cadastradas: "<<endl;
+    for (int i = 0; i < filial->andaFiliais; i++)
+    {
+        cout<< filial->filiais[i]<<endl;
+    }
+    
 }
 
 /*
 retorna o somatório de todas os custos de movimentação de carga entre todas as filiais
 cadastradas no programa;
 */
-float calculaCustosFiliais()
+float calculaCustosFiliais(struct Filial* filial)
 {
-
+    float cTotal=0;
+    for (int i = 0; i < filial->andaCustos; i++)
+    {
+        cTotal += filial->custo[i];
+    }
+    return cTotal;
 }
 
 void executarMenuFilial(struct Filial* filial)
 {
     vector<string> cdd;
     int op;
-        do
-        {
+    do
+    {
         cout << "\t\tMENU LOGISTICA\n"<<endl;
         cout << "1. Insere filial"<<endl;
         cout << "2. Insere movimentacao"<<endl;
@@ -251,13 +263,12 @@ void executarMenuFilial(struct Filial* filial)
         case 5:
             char eFilial[100];
             cout <<"Digite a cidades das duas filiais:"<<endl;
-                cin >> cfilial1;
-                cin >> cfilail2;
+                cin >> eFilial;
             removeFilial(filial, eFilial);
             break;
 
         case 6:
-            calculaCustosFiliais();
+            cout << "Custos totais: " << calculaCustosFiliais(filial)<<endl;
             break;
         case 7:
         {

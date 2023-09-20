@@ -21,6 +21,7 @@ int menuPrincipal(){
     cout << "0. Sair do programa\n"<<endl;;
     cout << "Escolha uma opcao: "<<endl;;
         cin >> op;
+    system("cls");
     return op;
 }
 
