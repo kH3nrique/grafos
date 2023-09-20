@@ -15,7 +15,7 @@ struct Filial
         int andaFiliais = 0;
     float custo[MAX_LOCATIONS];
         int andaCustos = 0;
-    int grafo[MAX_LOCATIONS];
+    int grafo[MAX_LOCATIONS*2];
        int andaGrafo = 0;
 };
 
@@ -137,13 +137,11 @@ void atualizaMovimentacao(struct Filial* filial, const char* filial_um, const ch
         cout << "Filial(is) não encontrada(s)" <<endl;
         return;
     }
-    for (int i = 0; i < filial->andaGrafo; i = i+2)
+    for (int i = 0; i < filial->andaFiliais; i = i+2)
     {
-        if (strcmp(filial->filiais[i], filial_um) == 0 || strcmp(filial->filiais[i+1], filial_um) == 0)
+        if ((strcmp(filial->filiais[i], filial_um) == 0 || strcmp(filial->filiais[i+1], filial_um) == 0) && (strcmp(filial->filiais[i], filial_dois) == 0 || strcmp(filial->filiais[i+1], filial_dois) == 0))
         {
-        }
-        if (strcmp(filial->filiais[i], filial_dois) == 0 || strcmp(filial->filiais[i+1], filial_dois) == 0)
-        {
+            insereMovimentacao(filial, filial_um, filial_dois);
         }
     }
     
