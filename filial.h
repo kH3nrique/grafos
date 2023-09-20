@@ -11,12 +11,12 @@ using namespace std;
 
 struct Filial
 {
-    int andaFiliais = 0;
-    char filiais[MAX_LOCATIONS][MAX_LOCATIONS];
-    int andaCustos = 0;
-    int custo[MAX_LOCATIONS];//matrizAdjacencia
+    char filiais[MAX_LOCATIONS][MAX_LOCATIONS];//matrizAdjacencia
+        int andaFiliais = 0;
+    float custo[MAX_LOCATIONS];
+        int andaCustos = 0;
     int grafo[MAX_LOCATIONS];
-    int andaGrafo = 0;
+       int andaGrafo = 0;
 };
 
 bool localExiste(const struct Filial* filial, const char* nomeLocal) {
@@ -28,6 +28,12 @@ bool localExiste(const struct Filial* filial, const char* nomeLocal) {
     return false;
 }
 
+/*
+reserva uma linha e uma coluna na matriz de adjacência, referente ao módulo de logística, para
+representar uma eventual informação sobre os custos de movimentação de carga com as demais filiais;
+◦ A filial deverá ser inserida pelo nome;
+◦ O programa deverá verificar se a filial já está inserida e, caso positivo, retornar uma mensagem de erro.
+*/
 void insereFilial(struct Filial* filial, const char* cidade)
 {
     // Numero de filiais atingidos?
@@ -35,19 +41,25 @@ void insereFilial(struct Filial* filial, const char* cidade)
         cout << "Limite de filiais atingido!!!" << endl;
         return;
     }
-
     // Local existe?
     if (localExiste(filial, cidade)) {
         cout << "Local '" << cidade << "' já existe no filial. Insira um nome único." << endl;
         return;
     }
-
     // Copia o nome do novo local para a matriz de filiais no filial
     strcpy(filial->filiais[filial->andaFiliais], cidade);
     cout << "Filial '" << filial->filiais[filial->andaFiliais] << "' inserido com sucesso." << endl;
     filial->andaFiliais++;
 }
 
+/*
+insere um custo (em reais) relacionado à movimentação de produtos entre duas filiais i e j;
+◦ As filiais deverão estar previamente inseridas no grafo. Caso contrário, retornar uma mensagem de erro para
+o usuário.
+◦ Importante: deverão ser listados os nomes das filiais para que o usuário se guie na escolha;
+◦ Caso uma eventual movimentação de produtos já esteja inserida, deve-se oferecer a opção de atualizar o custo
+entre as filiais selecionadas.
+*/
 void insereMovimentacao(struct Filial* filial, const char* filial_um, const char* filial_dois)
 {
     int i1 = -1, i2 = -1;
@@ -77,6 +89,11 @@ void insereMovimentacao(struct Filial* filial, const char* filial_um, const char
         filial->andaCustos++;
 }
 
+/*
+após o usuário escolher uma filial hipotética i, o programa deverá listar todas as filiais j
+para as quais exista alguma movimentação (i,j) de mercadoria cadastrada, inclusive com os custos de
+movimentação para cada uma delas;
+*/
 void listaFiliaisProximas(struct Filial* filial, const char* pFilial)
 {
     if (!localExiste(filial, pFilial))
@@ -92,6 +109,14 @@ void listaFiliaisProximas(struct Filial* filial, const char* pFilial)
     }
 }
 
+/*
+ocorre similarmente à inserção de eventuais movimentações de carga no módulo da
+logística, porém, nesse caso, a movimentação deverá estar previamente inserida na matriz de pesos que representa
+esse módulo;
+◦ Caso a movimentação entre duas filiais i e j não esteja inserida, deve-se oferecer essa opção ao usuário;
+◦ Na eventualidade de alguma das cidades envolvidas na operação, ou ainda as duas, não esteja(m) inseridas,
+deverá ser oferecida essa opção ao usuário.
+*/
 void atualizaMovimentacao(struct Filial* filial, const char* filial_um, const char* filial_dois)
 {
     int i1 = -1, i2 = -1;
@@ -124,9 +149,17 @@ void atualizaMovimentacao(struct Filial* filial, const char* filial_um, const ch
     
 }
 
+/*
+com base na informação de um nome de filial, essa função realiza a deleção dos dados de tal
+filial, inclusive de todas as eventuais movimentações de carga vinculadas à essa filial;
+◦ Caso a filial não exista, o programa deve emitir uma mensagem de erro;
+◦ No que diz respeito à matriz de pesos, não é necessário realizar a realocação de linhas e colunas. Para indicar
+a não existência de dados em alguma linha/coluna, pode-se apenas marcá-la como inutilizada (com -1, por
+exemplo).
+*/
 void removeFilial(struct Filial* filial, const char* eFilial)
 {
-    int i1 = -1, i2 = -1;
+    int i1 = -1;
     for (int i = 0; i < filial->andaFiliais; i++)
     {
         if (strcmp(filial->filiais[i], eFilial))
@@ -134,6 +167,34 @@ void removeFilial(struct Filial* filial, const char* eFilial)
             i1 = i;
         }
     }
+    if (i1 == -1)
+    {
+        cout << "Filial nao encontrada!" <<endl;
+        return;
+    }
+    int exclui = 0;
+    for (int i = 0; i < filial->andaGrafo; i = i+2)
+    {
+        if (strcmp(filial->filiais[i], eFilial) == 0 || strcmp(filial->filiais[i+1], eFilial) == 0)
+        {
+            exclui = filial->grafo[i];
+            filial->grafo[i] = filial->grafo[i+2];
+            filial->grafo[i+1] = filial->grafo[i+3];
+        }
+    }
+    for (int i = exclui; i < filial->andaFiliais; i++)
+    {
+        strcmp(filial->filiais[i], filial->filiais[i+1]);
+    }
+    filial->andaFiliais--;
+}
+
+/*
+retorna o somatório de todas os custos de movimentação de carga entre todas as filiais
+cadastradas no programa;
+*/
+float calculaCustosFiliais()
+{
 
 }
 
@@ -149,9 +210,10 @@ void executarMenuFilial(struct Filial* filial)
         cout << "3. Lista filiais proximas"<<endl;
         cout << "4. Atualiza movimentacao"<<endl;
         cout << "5. Remover filial"<<endl;
-        cout << "6. Voltar para o menu principal"<<endl;
+        cout << "6. Calcular custos totais"<<endl;
+        cout << "7. Voltar para o menu principal"<<endl;
         cout << "0. Sair do programa"<<endl;
-        cout << "Insira sua escolha: ";
+        cout << "\nInsira a opcao: ";
             cin >> op;
 
         switch (op)
@@ -193,7 +255,16 @@ void executarMenuFilial(struct Filial* filial)
                 cin >> cfilail2;
             removeFilial(filial, eFilial);
             break;
+
+        case 6:
+            calculaCustosFiliais();
+            break;
+        case 7:
+        {
+            return;
+        }
         default:
+            cout << "Opção inválida. Tente novamente." << endl;
             break;
         }
     } while (op != 0);
