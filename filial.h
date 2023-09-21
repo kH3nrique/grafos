@@ -256,7 +256,10 @@ void executarMenuFilial(struct Filial* filial)
             listaFiliaisProximas(filial, pFilial);
             break;
         case 4:
-
+            cout << "Digite as filias que serao atualizadas: " <<endl;
+                cin >> cfilial1;
+                cin >> cfilail2;
+            atualizaMovimentacao(filial, cfilial1, cfilail2);
             break;
         case 5:
             char eFilial[100];
