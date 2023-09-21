@@ -5,6 +5,7 @@
 #include <cstring>
 #include <vector>
 #include "jogo.h"
+#include "filial.h"
 
 #define MaxTam 100
 
@@ -19,25 +20,22 @@ int menuPrincipal(){
     cout << "0. Sair do programa\n"<<endl;;
     cout << "Escolha uma opcao: "<<endl;;
         cin >> op;
+    system("cls");
     return op;
 }
 
-struct Jogo{
-    int numLocais;
-    char locais[MaxTam][100];
-    int matrizAdjacencia[MaxTam][MaxTam];
-};
-
 void executarMenu(struct Jogo* jogo);
+void executarMenuFilial(struct Filial* filial);
 
 void switchMenu(){
     struct Jogo jogo;
+    struct Filial filial;
 
     bool lmao = true;
     while(lmao){
         switch (menuPrincipal()) {
             case 1:
-                //Coloca aqui henrique
+                executarMenuFilial(&filial);
                 break;
             case 2:
                 executarMenu(&jogo);

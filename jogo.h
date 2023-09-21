@@ -1,13 +1,17 @@
-#ifndef JOGO_H
-#define JOGO_H
-
-#include "index.h"
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <vector> 
 
 #define MAX_LOCATIONS 100
 
 using namespace std;
 
-struct Jogo;
+struct Jogo {
+    int numLocais;
+    char locais[MAX_LOCATIONS][100];
+    int matrizAdjacencia[MAX_LOCATIONS][MAX_LOCATIONS];
+};
 
 // Verificar se local existe
 bool localExiste(const struct Jogo* jogo, const char* nomeLocal) {
@@ -35,7 +39,7 @@ void insereLocalJogo(struct Jogo* jogo, const char* nomeLocal) {
     // Copia o nome do novo local para a matriz de locais no jogo
     strcpy(jogo->locais[jogo->numLocais], nomeLocal);
     
-    // int novoIndice = jogo->numLocais++;
+    int novoIndice = jogo->numLocais++; //AUMENTA O INDICE, FAZ O PROGRAMA ARMAZENAR AS CIDADES NA POSIÇÃO CORRETA
 
     cout << "Local '" << nomeLocal << "' inserido com sucesso." << endl;
 }
@@ -83,7 +87,7 @@ void listaLocaisDestino(const struct Jogo* jogo, const char* localPartida) {
         return;
     }
 
-    cout << "Locais de destino a partir de '" << localPartida << "':" << endl;
+    cout << "Locais de destino a partir de '" << localPartida << "':\n" << endl;
 
     // Percorre todos os locais do jogo
     for (int i = 0; i < jogo->numLocais; ++i) {
@@ -180,7 +184,7 @@ void atualizaTempo(struct Jogo* jogo, const char* localA, const char* localB) {
     } else {
         removeTempo(jogo, localA, localB);
         int tempo;
-        cout << "Insira o tempo de deslocamento entre " << localA << " e " << localB << " (em segundos): ";
+        cout << "Insira o novo tempo de deslocamento entre " << localA << " e " << localB << " (em segundos): ";
         cin >> tempo;
 
     jogo->matrizAdjacencia[indiceA][indiceB] = jogo->matrizAdjacencia[indiceB][indiceA] = tempo;
@@ -208,6 +212,7 @@ void executarMenu(struct Jogo* jogo) {
     vector<string> cidades; // armazenar as cidades inseridas
     
     do {
+        system("cls");
         cout << "MENU:" << endl;
         cout << "1. Inserir local" << endl;
         cout << "2. Inserir tempo de deslocamento" << endl;
@@ -216,15 +221,26 @@ void executarMenu(struct Jogo* jogo) {
         cout << "5. Atualizar tempo de deslocamento" << endl;
         cout << "6. Remover tempo de deslocamento" << endl;
         cout << "7. Calcular somatorio dos tempos de deslocamento" << endl;
-        cout << "8. Voltar para o menu principal" << endl;
+        cout << "8. Menu Principal" << endl;
+        cout << "0. Sair do programa" << endl;
+
+        cout << "\n";
+        cout << "Cidades inseridas:" << endl;
+        for (const string& cidade : cidades) {
+            cout << cidade << endl;
+        }
+        cout << "\n";
+
         cout << "Escolha uma opcao: ";
         cin >> opcao;
 
         switch (opcao) {
             case 1: {
                 char nomeLocal[100];
+                system("cls");
                 cout << "\n";
 
+                cout << "\t\tINSERIR LOCAL\n\n";
                 while (true) {
                     cout << "Digite o nome do novo local ou 'sair' para sair: ";
                     cin >> nomeLocal;
@@ -241,17 +257,22 @@ void executarMenu(struct Jogo* jogo) {
             }
             case 2: {
                 cout << "\n";
+                system("cls");
+                cout << "\t\tINSERIR TEMPO DESLOCAMENTO\n\n";
                 cout << "Digite o nome do primeiro local: ";
                 cin >> nomeLocalA;
                 cout << "Digite o nome do segundo local: ";
                 cin >> nomeLocalB;
                 insereTempoDeslocamento(jogo, nomeLocalA, nomeLocalB);
+                getchar();getchar();
                 cout << "\n";
                 break;
             }
             case 3: {
                 char localPartida[100];
                 cout << "\n";
+                system("cls");
+                cout << "\t\tLISTAR LOCAIS DESTINO\n\n";
                 cout << "Digite o nome do local de partida: ";
                 cin >> localPartida;
 
@@ -261,12 +282,15 @@ void executarMenu(struct Jogo* jogo) {
                     cout << "O local nao possui destino!!" << endl;
                 }
                 
+                getchar();getchar();
                 cout << "\n";
                 break;
             }
             case 4: {
                 char localDestino[100];
                 cout << "\n";
+                system("cls");
+                cout << "\t\tLISTAR LOCAIS ORIGEM\n\n";
                 cout << "Digite o nome do local de destino: ";
                 cin >> localDestino;
 
@@ -276,51 +300,59 @@ void executarMenu(struct Jogo* jogo) {
                 else {
                     listaLocaisOrigem(jogo, localDestino);
                 }
+                getchar();getchar();
                 cout << "\n";
                 break;
             }
             case 5: {
                 char localA[100], localB[100];
                 cout << "\n";
+                system("cls");
+                cout << "\t\tATUALIZAR TEMPO DE DESLOCAMENTO\n\n";
                 cout << "Digite o nome do primeiro local: ";
                 cin >> localA;
                 cout << "Digite o nome do segundo local: ";
                 cin >> localB;
                 atualizaTempo(jogo, localA, localB);
+                getchar();getchar();
                 cout << "\n";
                 break;
             }
             case 6: {
                 char localX[100], localY[100];
                 cout << "\n";
+                system("cls");
+                cout << "\t\tREMOVER TEMPO DE DESLOCAMENTO\n\n";
                 cout << "Digite o nome do primeiro local: ";
                 cin >> localX;
                 cout << "Digite o nome do segundo local: ";
                 cin >> localY;
                 removeTempo(jogo, localX, localY);
+                getchar();getchar();
                 cout << "\n";
                 break;
             }
             case 7: {
                 int somaTempos = calculaTemposLocais(jogo);
                 cout << "\n";
+                system("cls");
+                cout << "\t\tSOMATORIO\n\n";
                 cout << "Somatorio dos tempos de deslocamento: " << somaTempos << " segundos" << endl;
+                getchar();getchar();
                 cout << "\n";
                 break;
             }
-            case 8: {
+            case 8:
+            system("cls");
                 return;
-            }
+                break;
+            case 0:
+                cout << "Encerrando o programa." << endl;
+                exit(0); 
+            break;
             default:
                 cout << "Opção inválida. Tente novamente." << endl;
                 break;
         }
     } while (opcao != 0);
-    
-    cout << "Cidades inseridas pelo usuário:" << endl;
-    for (const string& cidade : cidades) {
-        cout << cidade << endl;
-    }
 }
-
-#endif

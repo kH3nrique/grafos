@@ -1,5 +1,6 @@
-#include"jogo.h"
+#include <iostream>
+#include "index.h" 
 
 int main() {
-    switchMenu();
+    switchMenu(); 
 }
